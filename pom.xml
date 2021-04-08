@@ -4,80 +4,64 @@
   <artifactId>TPJeLisLesLogs</artifactId>
   <version>0.0.1-SNAPSHOT</version>
  
-  <properties>
-        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
-        <java.version>1.8</java.version>
-        <maven.compiler.source>${java.version}</maven.compiler.source>
-        <maven.compiler.target>${java.version}</maven.compiler.target>
-        <junit-platform.version>5.3.1</junit-platform.version>
-  </properties>
-   
-  <build>
-    <sourceDirectory>src</sourceDirectory>
-    <plugins>
-	 		<plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-compiler-plugin</artifactId>
-                <version>3.8.0</version>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-surefire-plugin</artifactId>
-                <version>3.0.0-M3</version>
-                <configuration>
-                <!-- la config testFailureIgnore permet de placer le job au statut UNSTABLE (au lieu d'un FAIL global) lorsque certains tests sont en échec  -->
-                  <testFailureIgnore>
-                      true
-                  </testFailureIgnore>
-                    <argLine>
-                       --illegal-access=permit
-                    </argLine>
-                </configuration>
-            </plugin>
-            <plugin>
-                <groupId>org.apache.maven.plugins</groupId>
-                <artifactId>maven-failsafe-plugin</artifactId>
-                <version>3.0.0-M3</version>
-                <configuration>
-                    <argLine>
-                        --illegal-access=permit
-                    </argLine>
-                </configuration>
-            </plugin>
-        </plugins>      
-      
-    
-  </build>
+  	<properties>
+		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		<project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+		<java.version>11</java.version>
+		<maven.compiler.source>${java.version}</maven.compiler.source>
+		<maven.compiler.target>${java.version}</maven.compiler.target>
+		<junit-platform.version>5.7.0</junit-platform.version>
+	</properties>
 
-<!--   
-    <dependencies>
-<dependency>
-    <groupId>nl.basjes.parse.httpdlog</groupId>
-    <artifactId>httpdlog-parser</artifactId>
-    <version>5.7</version>
-</dependency>
-    </dependencies>
--->  
+	<dependencies>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-api</artifactId>
+			<version>5.7.0</version>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.junit.jupiter</groupId>
+			<artifactId>junit-jupiter-engine</artifactId>
+			<version>5.7.0</version>
+			<scope>test</scope>
+		</dependency>
+	</dependencies>
 
-<!-- On importe les bibliothèques JUnit uniquement si l'objectif de la construction est de faire des tests (scope test). En Production ils ne seront pas intégré pour limiter les risques et le poids du package déployé -->
-    <dependencies>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-api</artifactId> <!--  JUPITER = nom de Junit en version 5 (pour exécuter des tests automatisés) -->
-            <version>${junit-platform.version}</version>
-            <scope>test</scope>
-        </dependency>
-        <dependency>
-            <groupId>org.junit.jupiter</groupId>
-            <artifactId>junit-jupiter-engine</artifactId>
-            <version>${junit-platform.version}</version>
-            <scope>test</scope>
-        </dependency>
-    </dependencies> 
-  
-    
-    
+	<build>
+	<pluginManagement>
+		<plugins>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-compiler-plugin</artifactId>
+				<version>3.8.1</version>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-surefire-plugin</artifactId>	
+				<version>3.0.0-M3</version>
+				<configuration>
+					<testFailureIgnore>
+							true
+					</testFailureIgnore>
+					<argLine>
+							--illegal-access=permit
+					</argLine>
+			</configuration>
+			</plugin>
+			<plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-failsafe-plugin</artifactId>
+				<version>3.0.0-M3</version>
+				<configuration>
+					<argLine>
+							--illegal-access=permit
+					</argLine>
+				</configuration>
+			</plugin>
+		</plugins>
+	</pluginManagement>
+	</build>  
   
   
 </project>
